@@ -9,37 +9,37 @@ fetch("data.json")
 .then(data => {
 
     const item = data.find(
-        x => x.materialNumber === itemID
+        x => x["Material Number"] === itemID
     );
 
     if(item){
 
         document.getElementById("materialNumber").innerText =
-            item.materialNumber;
+            item["Material Number"];
 
         document.getElementById("materialDescription").innerText =
-            item.materialDescription;
+            item["Material Description"];
 
         document.getElementById("plant").innerText =
-            item.plant;
+            item["Plant"];
 
         document.getElementById("storageLocation").innerText =
-            item.storageLocation;
+            item["Storage Location"];
 
-        document.getElementById("baseUnitOfMeasure").innerText =
-            item.baseUnitOfMeasure;
+        document.getElementById("baseUnit").innerText =
+            item["Base Unit of Measure"];
 
         document.getElementById("valueRM").innerText =
-            "RM " + item.valueRM;
+            "RM " + item["Value (RM)"];
 
         document.getElementById("machine").innerText =
-            item.machine || "-";
+            item["Machine"] || "-";
 
         document.getElementById("comments").innerText =
-            item.comments || "-";
+            item["Comments"] || "-";
 
         document.getElementById("photo").src =
-            item.photo;
+            item["Photo"];
 
     }
 
