@@ -2,13 +2,19 @@ const params = new URLSearchParams(window.location.search);
 
 const itemID = params.get("id");
 
+console.log("QR ID:", itemID);
+
 fetch("data.json")
 .then(response => response.json())
 .then(data => {
 
+    console.log(data);
+
     const item = data.find(
-        x => x.materialNumber === itemID
+        x => x.materialNumber == itemID
     );
+
+    console.log(item);
 
     if(item){
 
