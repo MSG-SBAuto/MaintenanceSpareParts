@@ -3,51 +3,56 @@ const params = new URLSearchParams(window.location.search);
 const itemID = params.get("id");
 
 fetch("data.json")
-
 .then(response => response.json())
-
 .then(data => {
 
     const item = data.find(
-        x => x["Material Number"] === itemID
+        x => x.materialNumber === itemID
     );
 
     if(item){
 
         document.getElementById("materialNumber").innerText =
-            item["Material Number"];
+            item.materialNumber;
 
         document.getElementById("materialDescription").innerText =
-            item["Material Description"];
+            item.materialDescription;
 
         document.getElementById("plant").innerText =
-            item["Plant"];
+            item.plant;
 
         document.getElementById("storageLocation").innerText =
-            item["Storage Location"];
+            item.storageLocation;
 
         document.getElementById("baseUnit").innerText =
-            item["Base Unit of Measure"];
+            item.baseUnit;
 
         document.getElementById("valueRM").innerText =
-            "RM " + item["Value (RM)"];
+            "RM " + item.valueRM;
 
         document.getElementById("machine").innerText =
-            item["Machine"] || "-";
+            item.machine || "-";
 
         document.getElementById("comments").innerText =
-            item["Comments"] || "-";
+            item.comments || "-";
 
         document.getElementById("photo").src =
-            item["Photo"];
+            item.photo;
 
     }
-
     else{
 
         document.body.innerHTML =
             "<h1>Material Not Found</h1>";
 
     }
+
+})
+.catch(error => {
+
+    console.error(error);
+
+    document.body.innerHTML =
+        "<h1>Error Loading JSON</h1>";
 
 });
