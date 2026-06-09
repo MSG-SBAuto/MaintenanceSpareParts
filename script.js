@@ -1,29 +1,53 @@
 const params = new URLSearchParams(window.location.search);
+
 const itemID = params.get("id");
 
 fetch("data.json")
+
 .then(response => response.json())
+
 .then(data => {
 
-    const item = data.find(x => x.id === itemID);
+    const item = data.find(
+        x => x.materialNumber === itemID
+    );
 
     if(item){
 
-        document.getElementById("desc").innerText = item.description;
-        document.getElementById("id").innerText = item.id;
-        document.getElementById("plant").innerText = item.plant;
-        document.getElementById("storage").innerText = item.storage;
-        document.getElementById("qty").innerText =
-            item.qty + " " + item.uom;
+        document.getElementById("materialNumber").innerText =
+            item.materialNumber;
+
+        document.getElementById("materialDescription").innerText =
+            item.materialDescription;
+
+        document.getElementById("plant").innerText =
+            item.plant;
+
+        document.getElementById("storageLocation").innerText =
+            item.storageLocation;
+
+        document.getElementById("baseUnitOfMeasure").innerText =
+            item.baseUnitOfMeasure;
+
+        document.getElementById("valueRM").innerText =
+            "RM " + item.valueRM;
+
+        document.getElementById("machine").innerText =
+            item.machine || "-";
+
+        document.getElementById("comments").innerText =
+            item.comments || "-";
 
         document.getElementById("photo").src =
             item.photo;
 
     }
+
     else{
 
         document.body.innerHTML =
-            "<h1>Item Not Found</h1>";
+            "<h1>Material Not Found</h1>";
+
     }
 
 });
